@@ -1,6 +1,8 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using Chrono.ViewModels;
+using Chrono.Views;
 
 namespace Chrono
 {
@@ -9,6 +11,19 @@ namespace Chrono
     /// </summary>
     public partial class App : Application
     {
+
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            MainViewModel mainViewModel = new();
+            MainWindow = new MainView()
+            {
+                DataContext = mainViewModel,
+            };
+            MainWindow.Show();
+
+            base.OnStartup(e);
+        }
     }
 
 }
