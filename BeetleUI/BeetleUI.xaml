@@ -7,6 +7,7 @@
 
         <ResourceDictionary Source="Controls/Button.xaml"/>
         <ResourceDictionary Source="Controls/Label.xaml"/>
+        <ResourceDictionary Source="Controls/TextBox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>
