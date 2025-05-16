@@ -4,6 +4,9 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Resources/Themes/Light.xaml"/>
+
+        <ResourceDictionary Source="Controls/Button.xaml"/>
+        <ResourceDictionary Source="Controls/Label.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>

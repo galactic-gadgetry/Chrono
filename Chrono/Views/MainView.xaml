@@ -4,13 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chrono.Views"
+        xmlns:vm="clr-namespace:Chrono.ViewModels"
         mc:Ignorable="d"
         Title="MainView"
         Height="950" Width="1500"
         MinHeight="410" MinWidth="515">
     
     <Grid>
-        <Label Content="Main view placeholder"/>
+        <ContentControl Content="{Binding CurrentContentViewModel}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type vm:StartScreenViewModel}">
+                    <local:StartScreenView/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
     </Grid>
     
 </Window>

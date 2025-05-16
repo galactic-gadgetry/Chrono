@@ -8,5 +8,7 @@ namespace Chrono.ViewModels
 {
     class MainViewModel : ViewModelBase
     {
+
+        public ViewModelBase? CurrentContentViewModel { get; set; } = new StartScreenViewModel();
     }
 }
