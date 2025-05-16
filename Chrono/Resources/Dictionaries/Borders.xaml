@@ -5,7 +5,7 @@
     <Style x:Key="CenterViewBorderStyle" TargetType="Border">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Margin" Value="0,25,0,0"/>
+        <Setter Property="Margin" Value="0,50,0,0"/>
     </Style>
     
 </ResourceDictionary>

@@ -12,8 +12,4 @@
     <ProjectReference Include="..\BeetleUI\BeetleUI.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

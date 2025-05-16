@@ -36,6 +36,7 @@
                             Style="{StaticResource InputFieldLabelStyle}"/>
                         <TextBox
                             x:Name="NameTextBox"
+                            Text="{Binding NameText}"
                             Style="{StaticResource InputFieldTextBoxStyle}"/>
                     </StackPanel>
                 </Border>
@@ -51,11 +52,14 @@
                         </StackPanel.Resources>
 
                         <Button
-                            Content="Save"
-                            HorizontalAlignment="Left"/>
+                            Content="Create"
+                            HorizontalAlignment="Left"
+                            Command="{Binding CreateButtonClickedCommand}"
+                            IsDefault="True"/>
                         <Button
                             Content="Cancel"
-                            HorizontalAlignment="Right"/>
+                            HorizontalAlignment="Right"
+                            Command="{Binding CancelButtonClickedCommand}"/>
                     </StackPanel>
                 </Border>
             </Grid>
