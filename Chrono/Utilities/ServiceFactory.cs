@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Chrono.Services;
+using Chrono.Stores;
+using Chrono.ViewModels;
+
+namespace Chrono.Utilities
+{
+    class ServiceFactory
+    {
+
+        public static INavigate CreateNavigationService(string type,
+            BookStore bookStore, NavigationStore navigationStore)
+        {
+            switch (type.ToLower())
+            {
+                case "create new book":
+                    return new LayoutNavigationService<CreateNewBookViewModel>(
+                        navigationStore,
+                        () => new CreateNewBookViewModel());
+                case "layout":
+                    return new NavigationService<LayoutViewModel>(
+                        navigationStore,
+                        () => new LayoutViewModel(navigationStore));
+                case "start screen":
+                    return new NavigationService<StartScreenViewModel>(
+                        navigationStore,
+                        () => new StartScreenViewModel(bookStore, navigationStore));
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type));
+            }
+        }
+    }
+}
