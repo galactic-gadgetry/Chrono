@@ -10,7 +10,9 @@ namespace Chrono.ViewModels
 {
     class StartScreenViewModel : ViewModelBase
     {
-
+        /// <summary>
+        /// Text for the Welcome Message label.
+        /// </summary>
         public string WelcomeMessageText
         {
             get
@@ -34,10 +36,15 @@ namespace Chrono.ViewModels
         }
 
 
-
+        /// <summary>
+        /// Executed when the Create New Log Book button is clicked.
+        /// </summary>
         public ICommand CreateNewLogBookButtonClickedCommand { get; }
 
-
+        /// <summary>
+        /// Executed when the Open Existing Log Book button is
+        /// clicked.
+        /// </summary>
         public ICommand OpenExistingLogBookButtonClickedCommand { get; }
 
 
@@ -51,13 +58,13 @@ namespace Chrono.ViewModels
         }
 
 
-
+        
         private void OnCreateNewLogBookButtonClicked(object? obj)
         {
             throw new NotImplementedException();
         }
 
-
+        
         private void OnOpenExistingLogBookButtonClicked(object? obj)
         {
             throw new NotImplementedException();
