@@ -4,6 +4,7 @@
 
     <Style x:Key="InputFieldTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource DefaultTextBoxStyle}">
         <Setter Property="MinWidth" Value="300"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
     
 </ResourceDictionary>

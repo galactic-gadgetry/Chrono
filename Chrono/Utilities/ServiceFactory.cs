@@ -17,6 +17,10 @@ namespace Chrono.Utilities
         {
             switch (type.ToLower())
             {
+                case "book details":
+                    return new LayoutNavigationService<BookDetailsViewModel>(
+                        navigationStore,
+                        () => new BookDetailsViewModel(bookStore));
                 case "create new book":
                     return new LayoutNavigationService<CreateNewBookViewModel>(
                         navigationStore,

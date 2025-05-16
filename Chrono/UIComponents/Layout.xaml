@@ -14,6 +14,9 @@
 
             <ContentControl Content="{Binding CurrentContentViewModel}">
                 <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type vm:BookDetailsViewModel}">
+                        <view:BookDetailsView/>
+                    </DataTemplate>
                     <DataTemplate DataType="{x:Type vm:CreateNewBookViewModel}">
                         <view:CreateNewBook/>
                     </DataTemplate>

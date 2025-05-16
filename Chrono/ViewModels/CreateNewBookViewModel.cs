@@ -14,6 +14,9 @@ namespace Chrono.ViewModels
 {
     class CreateNewBookViewModel : ViewModelBase
     {
+
+        private readonly INavigate _bookDetailsNavigationService;
+
         /// <summary>
         /// Used to manage the app's current book.
         /// </summary>
@@ -53,6 +56,10 @@ namespace Chrono.ViewModels
                 new Action<object?>(OnCancelButtonClicked));
             CreateButtonClickedCommand = new RelayCommand(
                 new Action<object?>(OnCreateButtonClicked));
+
+            _bookDetailsNavigationService =
+                ServiceFactory.CreateNavigationService(
+                    "book details", _bookStore, _navigationStore);
         }
 
 
@@ -61,7 +68,8 @@ namespace Chrono.ViewModels
         {
             BookDTO dto = new() { Name = NameText };
             BookService.CreateNewCurrentBook(_bookStore, dto);
-            
+
+            _bookDetailsNavigationService.Navigate();
         }
 
         

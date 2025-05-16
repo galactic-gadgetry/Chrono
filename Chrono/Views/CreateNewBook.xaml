@@ -8,7 +8,7 @@
              d:DesignHeight="950" d:DesignWidth="1500"
              FocusManager.FocusedElement="{Binding ElementName=NameTextBox}">
     
-    <Grid Background="White">
+    <Grid>
         <Border Style="{StaticResource CenterViewBorderStyle}">
 
             <Grid>
@@ -25,18 +25,15 @@
                         Style="{StaticResource ViewTitleLabelStyle}"/>
                 </Border>
                 
-                <!-- Content -->
-                <Border
-                    Grid.Row="1"
-                    Margin="0,0,0,15" Padding="0,0,0,15"
-                    BorderBrush="LightGray" BorderThickness="0,0,0,1">
+                <!-- #Content -->
+                <Border Grid.Row="1" Style="{StaticResource CenterViewContentsBorderStyle}">
                     <StackPanel>
                         <Label
                             Content="Name"
                             Style="{StaticResource InputFieldLabelStyle}"/>
                         <TextBox
                             x:Name="NameTextBox"
-                            Text="{Binding NameText}"
+                            Text="{Binding NameText, Mode=TwoWay}"
                             Style="{StaticResource InputFieldTextBoxStyle}"/>
                     </StackPanel>
                 </Border>
@@ -45,20 +42,15 @@
                 <Border Grid.Row="2">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <StackPanel.Resources>
-                            <Style TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
-                                <Setter Property="Width" Value="80"/>
-                                <Setter Property="Margin" Value="5,0"/>
-                            </Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource StandardControlButtonStyle}"/>
                         </StackPanel.Resources>
 
                         <Button
                             Content="Create"
-                            HorizontalAlignment="Left"
                             Command="{Binding CreateButtonClickedCommand}"
                             IsDefault="True"/>
                         <Button
                             Content="Cancel"
-                            HorizontalAlignment="Right"
                             Command="{Binding CancelButtonClickedCommand}"/>
                     </StackPanel>
                 </Border>

@@ -3,9 +3,17 @@
 
 
     <Style x:Key="CenterViewBorderStyle" TargetType="Border">
+        <Setter Property="MinWidth" Value="500"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="0,50,0,0"/>
+    </Style>
+
+    <Style x:Key="CenterViewContentsBorderStyle" TargetType="Border">
+        <Setter Property="Margin" Value="0,0,0,15"/>
+        <Setter Property="Padding" Value="0,0,0,15"/>
+        <Setter Property="BorderBrush" Value="LightGray"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
     </Style>
     
 </ResourceDictionary>
