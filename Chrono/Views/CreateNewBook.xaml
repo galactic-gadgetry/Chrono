@@ -33,7 +33,7 @@
                             Style="{StaticResource InputFieldLabelStyle}"/>
                         <TextBox
                             x:Name="NameTextBox"
-                            Text="{Binding NameText, Mode=TwoWay}"
+                            Text="{Binding NameText}"
                             Style="{StaticResource InputFieldTextBoxStyle}"/>
                     </StackPanel>
                 </Border>

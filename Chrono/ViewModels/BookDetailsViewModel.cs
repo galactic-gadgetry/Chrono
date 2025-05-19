@@ -10,11 +10,15 @@ namespace Chrono.ViewModels
 {
     class BookDetailsViewModel : ViewModelBase
     {
-
+        /// <summary>
+        /// Used to manage the app's current book.
+        /// </summary>
         private readonly BookStore _bookStore;
 
 
-
+        /// <summary>
+        /// The app's current book.
+        /// </summary>
         public Book CurrentBook =>
             _bookStore.CurrentBook;
 
