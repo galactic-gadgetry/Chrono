@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Chrono.Models;
 using Chrono.Models.DTOs;
 using Chrono.Stores;
@@ -11,6 +12,48 @@ namespace Chrono.Services
 {
     static class BookService
     {
+        /// <summary>
+        /// Closes the book store's current book.
+        /// </summary>
+        /// <param name="bookStore"></param>
+        /// <returns>True selects the Yes or No button, or the
+        /// current book has no unsaved changes, false otherwise</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static bool CloseCurrentBook(BookStore bookStore)
+        {
+            // If the book has unsaved changes, prompt the user
+            // to save the book before closing.
+            Book book = bookStore.CurrentBook;
+            if (!book.IsBookVoid && book.HasUnsavedChanges)
+            {
+                MessageBoxResult result =
+                    DialogService.PromptUserWithSaveChangesMessage(bookStore);
+                if (result == MessageBoxResult.Cancel)
+                {
+                    return false;
+                }
+                else if (result == MessageBoxResult.Yes)
+                {
+                    SaveCurrentBook(bookStore);
+                    return true;
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            // Set the book store's current book to a void-state
+            // book.
+            SetBookStoreCurrentBookToVoidState(bookStore);
+
+            return true;
+        }
+
         /// <summary>
         /// Creates a new <see cref="Book"/> instance sets it as the
         /// book store's current book.
@@ -61,12 +104,40 @@ namespace Chrono.Services
         }
 
         /// <summary>
+        /// Loads a <see cref="Book"/> instance from a JSON file and
+        /// sets it as the book store's current book.
+        /// </summary>
+        /// <param name="bookStore"></param>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static BookStore LoadBookToBookStoreFromJson(
+            BookStore bookStore, string filePath)
+        {
+            Book book = JsonService.LoadBookFromJsonFile(filePath);
+            SetBookStoreCurrentBook(bookStore, book);
+
+            return bookStore;
+        }
+
+        /// <summary>
+        /// Saves the book store's current book to file.
+        /// </summary>
+        /// <param name="bookStore"></param>
+        public static void SaveCurrentBook(BookStore bookStore)
+        {
+            ArgumentNullException.ThrowIfNull(bookStore, nameof(bookStore));
+
+            SaveCurrentBookToJson(bookStore);
+        }
+
+        
+        /// <summary>
         /// Saves the b ook and its associated header to file.
         /// </summary>
         /// <param name="book"></param>
         /// <exception cref="InvalidOperationException">Thrown if
         /// the book is void state</exception>
-        public static void SaveBookToJson(Book book)
+        private static void SaveBookToJson(Book book)
         {
             // Check for null or invalid book state.
             ArgumentNullException.ThrowIfNull(book, nameof(book));
@@ -88,27 +159,15 @@ namespace Chrono.Services
         }
 
         /// <summary>
-        /// Saves the book store's current book to file.
-        /// </summary>
-        /// <param name="bookStore"></param>
-        public static void SaveCurrentBook(BookStore bookStore)
-        {
-            ArgumentNullException.ThrowIfNull(bookStore, nameof(bookStore));
-
-            SaveCurrentBookToJson(bookStore);
-        }
-
-        /// <summary>
         /// Saves the book store's current book to a JSON file.
         /// </summary>
         /// <param name="bookStore"></param>
-        public static void SaveCurrentBookToJson(BookStore bookStore)
+        private static void SaveCurrentBookToJson(BookStore bookStore)
         {
             ArgumentNullException.ThrowIfNull(bookStore, nameof(bookStore));
 
             SaveBookToJson(bookStore.CurrentBook);
         }
-
 
         /// <summary>
         /// Sets the book store's current book.
@@ -121,6 +180,18 @@ namespace Chrono.Services
             ArgumentNullException.ThrowIfNull(book, nameof(book));
 
             bookStore.CurrentBook = book;
+        }
+
+        /// <summary>
+        /// Sets the book store's current book to a void state book.
+        /// </summary>
+        /// <param name="bookStore"></param>
+        public static void SetBookStoreCurrentBookToVoidState(BookStore bookStore)
+        {
+            ArgumentNullException.ThrowIfNull(bookStore, nameof(bookStore));
+
+            Book voidBook = new() { IsBookVoid = true };
+            SetBookStoreCurrentBook(bookStore, voidBook);
         }
     }
 }
