@@ -78,6 +78,35 @@ namespace Chrono.Services
             return book;
         }
 
+        /// <summary>
+        /// Deletes the book and header files of the book.
+        /// </summary>
+        /// <param name="book"></param>
+        public static void DeleteBookFile(Book book)
+        {
+            ArgumentNullException.ThrowIfNull(book, nameof(book));
+
+            // Delete the book and book header file.
+            FileService.DeleteFile(book.SaveFilePath);
+            FileService.DeleteFile(book.HeaderSaveFilePath);
+        }
+
+        /// <summary>
+        /// Deletes the book and header files of the book store's
+        /// current book.
+        /// </summary>
+        /// <param name="bookStore"></param>
+        public static void DeleteCurrentBook(BookStore bookStore)
+        {
+            ArgumentNullException.ThrowIfNull(bookStore, nameof(bookStore));
+
+            DeleteBookFile(bookStore.CurrentBook);
+
+            // Set the book store's current book to a void state
+            // book.
+            SetBookStoreCurrentBookToVoidState(bookStore);
+        }
+
 
         public static BookHeader GetNewBookHeader(Book book)
         {

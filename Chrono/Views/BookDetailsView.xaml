@@ -58,11 +58,14 @@
                         </StackPanel.Resources>
 
                         <Button
-                            Content="Edit"/>
+                            Content="Edit"
+                            Command="{Binding EditButtonClickedCommand}"/>
                         <Button
-                            Content="Archive"/>
+                            Content="Archive"
+                            Command="{Binding ArchiveButtonClickedCommand}"/>
                         <Button
-                            Content="Delete"/>
+                            Content="Delete"
+                            Command="{Binding DeleteButtonClickedCommand}"/>
                     </StackPanel>
                 </Border>
             </Grid>
