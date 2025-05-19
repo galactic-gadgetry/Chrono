@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Chrono.Services;
 using Chrono.Stores;
+using Chrono.Utilities;
 
 namespace Chrono.ViewModels
 {
@@ -12,6 +14,9 @@ namespace Chrono.ViewModels
         // Backing Fields
         private string infoText = string.Empty;
 
+
+
+        private readonly BookStore _bookStore;
 
         /// <summary>
         /// Used to manage the app's navigation state.
@@ -46,8 +51,10 @@ namespace Chrono.ViewModels
 
 
 
-        public LayoutViewModel(NavigationStore navigationStore)
+        public LayoutViewModel(BookStore bookStore,
+            NavigationStore navigationStore)
         {
+            _bookStore = bookStore;
             _navigationStore = navigationStore;
 
             _navigationStore.CurrentLayoutContentViewModelChanged +=
@@ -58,6 +65,15 @@ namespace Chrono.ViewModels
         }
 
 
+
+        private void NavigateNavBar()
+        {
+            INavigate navigationBarNavigationService =
+                ServiceFactory.CreateNavigationService(
+                    "nav bar", _bookStore, _navigationStore);
+            navigationBarNavigationService.Navigate();
+        }
+
         /// <summary>
         /// Handles the navigation store's
         /// <see cref="NavigationStore.CurrentLayoutContentViewModelChanged"/>
@@ -65,6 +81,11 @@ namespace Chrono.ViewModels
         /// </summary>
         private void OnCurrentContentViewModelChanged()
         {
+            if (CurrentContentViewModel is DefaultViewModelBase)
+            {
+                NavigateNavBar();
+            }
+
             OnPropertyChanged(nameof(CurrentContentViewModel));
         }
 
@@ -79,7 +100,7 @@ namespace Chrono.ViewModels
         }
 
 
-        private void OnInfoUpdated(object sender, string info)
+        private void OnInfoUpdated(object? sender, string info)
         {
             InfoText = info;
         }

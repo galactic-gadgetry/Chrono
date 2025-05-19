@@ -8,7 +8,7 @@ using Chrono.Stores;
 
 namespace Chrono.ViewModels
 {
-    class BookDetailsViewModel : ViewModelBase
+    class BookDetailsViewModel : DefaultViewModelBase
     {
         /// <summary>
         /// Used to manage the app's current book.

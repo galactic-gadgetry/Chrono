@@ -9,7 +9,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\Icons\Activity\activity_white.png" />
+    <None Remove="Resources\Images\Icons\Briefcase\briefcase_white.png" />
+    <None Remove="Resources\Images\Icons\Calendar\calendar_white.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BeetleUI\BeetleUI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\Activity\activity_white.png" />
+    <Resource Include="Resources\Images\Icons\Briefcase\briefcase_white.png" />
+    <Resource Include="Resources\Images\Icons\Calendar\calendar_white.png" />
   </ItemGroup>
 
 </Project>

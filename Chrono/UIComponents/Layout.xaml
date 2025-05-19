@@ -14,7 +14,7 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="140"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -24,7 +24,13 @@
                 
                 <!-- #Nav Bar -->
                 <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
-                    
+                    <ContentControl Content="{Binding CurrentNavigationBarViewModel}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type vm:NavigationBarViewModel}">
+                                <local:NavigationBar/>
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
                 </Border>
                 
                 

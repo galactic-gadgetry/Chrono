@@ -28,7 +28,11 @@ namespace Chrono.Utilities
                 case "layout":
                     return new NavigationService<LayoutViewModel>(
                         navigationStore,
-                        () => new LayoutViewModel(navigationStore));
+                        () => new LayoutViewModel(bookStore, navigationStore));
+                case "nav bar":
+                    return new NavBarNavigationService<NavigationBarViewModel>(
+                        navigationStore,
+                        () => new NavigationBarViewModel());
                 case "start screen":
                     return new NavigationService<StartScreenViewModel>(
                         navigationStore,
