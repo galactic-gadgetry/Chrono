@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Chrono.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -79,6 +81,12 @@ namespace Chrono.Models
         {
             CreatedDateTime = DateTime.Now;
             ID = Guid.NewGuid();
+            HeaderSaveFilePath = Path.Combine(
+                FileService.SaveFileDirectory,
+                ID.ToString() + "_head.json");
+            SaveFilePath = Path.Combine(
+                FileService.SaveFileDirectory,
+                ID.ToString() + ".json");
             Status = BookStatus.Active;
         }
 

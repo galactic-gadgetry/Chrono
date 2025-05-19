@@ -90,11 +90,15 @@ namespace Chrono.ViewModels
         }
 
 
-
+        /// <summary>
+        /// Uses information from the view to create a new
+        /// <see cref="Book"/> instance.
+        /// </summary>
         private void CreateNewBookRequested()
         {
             BookDTO dto = new() { Name = NameText };
             Book book = BookService.CreateNewCurrentBook(_bookStore, dto);
+            BookService.SaveCurrentBook(_bookStore);
 
             // Update the info bar.
             OnInfoUpdated($"New book '{book.Name}' created");
