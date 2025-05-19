@@ -7,21 +7,46 @@
              xmlns:vm="clr-namespace:Chrono.ViewModels"
              xmlns:view="clr-namespace:Chrono.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="950" d:DesignWidth="1500">
     
     <Grid>
         <Border>
 
-            <ContentControl Content="{Binding CurrentContentViewModel}">
-                <ContentControl.Resources>
-                    <DataTemplate DataType="{x:Type vm:BookDetailsViewModel}">
-                        <view:BookDetailsView/>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type vm:CreateNewBookViewModel}">
-                        <view:CreateNewBook/>
-                    </DataTemplate>
-                </ContentControl.Resources>
-            </ContentControl>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <!-- #Nav Bar -->
+                <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+                    
+                </Border>
+                
+                
+                <!-- #Content -->
+                <Border Grid.Column="1" Grid.Row="0">
+                    <ContentControl Content="{Binding CurrentContentViewModel}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type vm:BookDetailsViewModel}">
+                                <view:BookDetailsView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:CreateNewBookViewModel}">
+                                <view:CreateNewBook/>
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                </Border>
+                
+                <!-- #Info Bar -->
+                <Border Grid.Column="1" Grid.Row="1">
+                    <Label Content="{Binding InfoText}"/>
+                </Border>
+            </Grid>
 
         </Border>
     </Grid>

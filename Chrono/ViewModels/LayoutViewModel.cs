@@ -9,6 +9,10 @@ namespace Chrono.ViewModels
 {
     class LayoutViewModel : ViewModelBase
     {
+        // Backing Fields
+        private string infoText = string.Empty;
+
+
         /// <summary>
         /// Used to manage the app's navigation state.
         /// </summary>
@@ -27,6 +31,19 @@ namespace Chrono.ViewModels
         public ViewModelBase? CurrentNavigationBarViewModel =>
             _navigationStore.CurrentNavigationBarViewModel;
 
+        /// <summary>
+        /// Text for the info bar label.
+        /// </summary>
+        public string InfoText
+        {
+            get => infoText;
+            set
+            {
+                infoText = value;
+                OnPropertyChanged(nameof(InfoText));
+            }
+        }
+
 
 
         public LayoutViewModel(NavigationStore navigationStore)
@@ -37,6 +54,7 @@ namespace Chrono.ViewModels
                 OnCurrentContentViewModelChanged;
             _navigationStore.CurrentNavigationBarViewModelChanged +=
                 OnCurrentNavigationBarViewModelChanged;
+            _navigationStore.InfoUpdated += OnInfoUpdated;
         }
 
 
@@ -58,6 +76,12 @@ namespace Chrono.ViewModels
         private void OnCurrentNavigationBarViewModelChanged()
         {
             OnPropertyChanged(nameof(CurrentNavigationBarViewModel));
+        }
+
+
+        private void OnInfoUpdated(object sender, string info)
+        {
+            InfoText = info;
         }
     }
 }

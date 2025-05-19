@@ -33,7 +33,7 @@
                             Style="{StaticResource InputFieldLabelStyle}"/>
                         <TextBox
                             x:Name="NameTextBox"
-                            Text="{Binding NameText}"
+                            Text="{Binding NameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Style="{StaticResource InputFieldTextBoxStyle}"/>
                     </StackPanel>
                 </Border>
@@ -48,6 +48,7 @@
                         <Button
                             Content="Create"
                             Command="{Binding CreateButtonClickedCommand}"
+                            IsEnabled="{Binding CanCreateBook}"
                             IsDefault="True"/>
                         <Button
                             Content="Cancel"

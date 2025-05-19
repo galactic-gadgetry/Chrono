@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Chrono.Commands;
+using Chrono.Models;
 using Chrono.Models.DTOs;
 using Chrono.Services;
 using Chrono.Stores;
@@ -14,7 +15,13 @@ namespace Chrono.ViewModels
 {
     class CreateNewBookViewModel : ViewModelBase
     {
+        // Backing Fields
+        private string nameText = string.Empty;
 
+
+        /// <summary>
+        /// Used to navigate to the Book Details view.
+        /// </summary>
         private readonly INavigate _bookDetailsNavigationService;
 
         /// <summary>
@@ -29,9 +36,29 @@ namespace Chrono.ViewModels
 
 
         /// <summary>
+        /// True if the view inputs are valid, false otherwise.
+        /// </summary>
+        public bool CanCreateBook
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(nameText);
+            }
+        }
+
+        /// <summary>
         /// Text for the Name text box.
         /// </summary>
-        public string NameText { get; set; } = string.Empty;
+        public string NameText
+        {
+            get => nameText;
+            set
+            {
+                nameText = value;
+                OnPropertyChanged(nameof(NameText));
+                OnPropertyChanged(nameof(CanCreateBook));
+            }
+        }
 
 
         /// <summary>
@@ -67,7 +94,10 @@ namespace Chrono.ViewModels
         private void CreateNewBookRequested()
         {
             BookDTO dto = new() { Name = NameText };
-            BookService.CreateNewCurrentBook(_bookStore, dto);
+            Book book = BookService.CreateNewCurrentBook(_bookStore, dto);
+
+            // Update the info bar.
+            OnInfoUpdated($"New book '{book.Name}' created");
 
             _bookDetailsNavigationService.Navigate();
         }
