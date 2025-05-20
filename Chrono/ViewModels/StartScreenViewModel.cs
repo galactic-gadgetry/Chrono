@@ -33,6 +33,11 @@ namespace Chrono.ViewModels
         /// </summary>
         private readonly NavigationStore _navigationStore;
 
+        /// <summary>
+        /// Used to navigate to the Saved Books view.
+        /// </summary>
+        private readonly INavigate _savedBooksNavigationService;
+
 
         /// <summary>
         /// Text for the Welcome Message label.
@@ -89,6 +94,9 @@ namespace Chrono.ViewModels
             _layoutNavigationService =
                 ServiceFactory.CreateNavigationService(
                     "layout", _bookStore, _navigationStore);
+            _savedBooksNavigationService =
+                ServiceFactory.CreateNavigationService(
+                    "saved books", _bookStore, _navigationStore);
         }
 
 
@@ -102,10 +110,14 @@ namespace Chrono.ViewModels
             _createNewBookNavigationService.Navigate();
         }
 
-        
+        /// <summary>
+        /// Handles the Open Existing Log Book button click event.
+        /// </summary>
+        /// <param name="obj"></param>
         private void OnOpenExistingLogBookButtonClicked(object? obj)
         {
-            throw new NotImplementedException();
+            _layoutNavigationService.Navigate();
+            _savedBooksNavigationService.Navigate();
         }
     }
 }

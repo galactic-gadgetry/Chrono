@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Chrono.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="950" d:DesignWidth="2000">
+             d:DesignHeight="950" d:DesignWidth="2000"
+             d:Background="White">
 
-    <Grid x:Name="ViewGrid" Background="White">
+    <Grid x:Name="ViewGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -15,12 +16,12 @@
 
         <!-- #Welcome Message -->
         <Border
+            Grid.Row="0"
             Margin="40,25"
-            BorderBrush="LightGray" BorderThickness="0,0,0,1">
+            BorderBrush="{StaticResource BorderBrushPrimary1}" BorderThickness="0,0,0,1">
             <Label
                 Content="{Binding WelcomeMessageText}"
-                HorizontalAlignment="Left"
-                FontSize="22" FontWeight="DemiBold"/>
+                Style="{StaticResource ViewTitleLabelStyle}"/>
         </Border>
         
         <Border

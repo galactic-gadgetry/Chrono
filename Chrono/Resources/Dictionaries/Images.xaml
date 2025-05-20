@@ -4,8 +4,18 @@
 
     <BitmapImage x:Key="ActivityWhite" UriSource="/Chrono;component/Resources/Images/Icons/Activity/activity_white.png"/>
 
+    <BitmapImage x:Key="ArrowLeftCircleBlack" UriSource="/Chrono;component/Resources/Images/Icons/Arrow-Left-Circle/arrow-left-circle_black.png"/>
+
+    <BitmapImage x:Key="BookBlack" UriSource="/Chrono;component/Resources/Images/Icons/Book/book_black.png"/>
+
+    <BitmapImage x:Key="BookOpenBlack" UriSource="/Chrono;component/Resources/Images/Icons/Book-Open/book-open_black.png"/>
+
     <BitmapImage x:Key="BriefcaseWhite" UriSource="/Chrono;component/Resources/Images/Icons/Briefcase/briefcase_white.png"/>
 
     <BitmapImage x:Key="CalendarWhite" UriSource="/Chrono;component/Resources/Images/Icons/Calendar/calendar_white.png"/>
+
+    <BitmapImage x:Key="Edit3Black" UriSource="/Chrono;component/Resources/Images/Icons/Edit-3/edit-3_black.png"/>
+
+    <BitmapImage x:Key="TrashBlack" UriSource="/Chrono;component/Resources/Images/Icons/Trash/trash_black.png"/>
 
 </ResourceDictionary>

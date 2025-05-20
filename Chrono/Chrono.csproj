@@ -10,8 +10,13 @@
 
   <ItemGroup>
     <None Remove="Resources\Images\Icons\Activity\activity_white.png" />
+    <None Remove="Resources\Images\Icons\Arrow-Left-Circle\arrow-left-circle_black.png" />
+    <None Remove="Resources\Images\Icons\Book-Open\book-open_black.png" />
+    <None Remove="Resources\Images\Icons\Book\book_black.png" />
     <None Remove="Resources\Images\Icons\Briefcase\briefcase_white.png" />
     <None Remove="Resources\Images\Icons\Calendar\calendar_white.png" />
+    <None Remove="Resources\Images\Icons\Edit-3\edit-3_black.png" />
+    <None Remove="Resources\Images\Icons\Trash\trash._blacksvg.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,8 +29,13 @@
 
   <ItemGroup>
     <Resource Include="Resources\Images\Icons\Activity\activity_white.png" />
+    <Resource Include="Resources\Images\Icons\Arrow-Left-Circle\arrow-left-circle_black.png" />
+    <Resource Include="Resources\Images\Icons\Book-Open\book-open_black.png" />
+    <Resource Include="Resources\Images\Icons\Book\book_black.png" />
     <Resource Include="Resources\Images\Icons\Briefcase\briefcase_white.png" />
     <Resource Include="Resources\Images\Icons\Calendar\calendar_white.png" />
+    <Resource Include="Resources\Images\Icons\Edit-3\edit-3_black.png" />
+    <Resource Include="Resources\Images\Icons\Trash\trash_black.png" />
   </ItemGroup>
 
   <ItemGroup>

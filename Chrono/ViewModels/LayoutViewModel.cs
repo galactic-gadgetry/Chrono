@@ -15,8 +15,15 @@ namespace Chrono.ViewModels
         private string infoText = string.Empty;
 
 
-
+        /// <summary>
+        /// Used to manage the app's current book.
+        /// </summary>
         private readonly BookStore _bookStore;
+
+        /// <summary>
+        /// Used to navigate to the Navigation Bar UI component.
+        /// </summary>
+        private readonly INavigate _navBarNavigationService;
 
         /// <summary>
         /// Used to manage the app's navigation state.
@@ -57,6 +64,10 @@ namespace Chrono.ViewModels
             _bookStore = bookStore;
             _navigationStore = navigationStore;
 
+            _navBarNavigationService =
+                ServiceFactory.CreateNavigationService(
+                    "nav bar", _bookStore, _navigationStore);
+
             _navigationStore.CurrentLayoutContentViewModelChanged +=
                 OnCurrentContentViewModelChanged;
             _navigationStore.CurrentNavigationBarViewModelChanged +=
@@ -68,10 +79,7 @@ namespace Chrono.ViewModels
 
         private void NavigateNavBar()
         {
-            INavigate navigationBarNavigationService =
-                ServiceFactory.CreateNavigationService(
-                    "nav bar", _bookStore, _navigationStore);
-            navigationBarNavigationService.Navigate();
+            _navBarNavigationService.Navigate();
         }
 
         /// <summary>
@@ -81,12 +89,19 @@ namespace Chrono.ViewModels
         /// </summary>
         private void OnCurrentContentViewModelChanged()
         {
-            if (CurrentContentViewModel is DefaultViewModelBase)
+            if (CurrentContentViewModel is DefaultViewModelBase &&
+                CurrentNavigationBarViewModel is not NavigationBarViewModel)
             {
                 NavigateNavBar();
             }
+            else if (CurrentContentViewModel is HybridViewModelBase &&
+                _bookStore.CurrentBook.IsBookVoid == false)
+            {
+                // This should have the nav bar loaded.
+                throw new NotImplementedException();
+            }
 
-            OnPropertyChanged(nameof(CurrentContentViewModel));
+                OnPropertyChanged(nameof(CurrentContentViewModel));
         }
 
         /// <summary>

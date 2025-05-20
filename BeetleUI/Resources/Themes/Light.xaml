@@ -8,8 +8,16 @@
     <Color x:Key="AccentColor120">#154A97</Color>
     <Color x:Key="AccentColor130">#124084</Color>
     <Color x:Key="AccentColor140">#103771</Color>
+
+    <Color x:Key="SolidControlFillColorPrimary100">#D3D3D3</Color>
+
+    <Color x:Key="TextFillColorPrimary100">#000000</Color>
+
+    <Color x:Key="WindowBackgroundPrimary100">#FFFFFF</Color>
     
     <!-- #Brushes -->
+    <SolidColorBrush x:Key="ControlBackgroundFillColorBrush2" Color="{StaticResource SolidControlFillColorPrimary100}"/>
+
     <SolidColorBrush x:Key="LayerFillColorBrush1" Color="{StaticResource AccentColor100}"/>
 
     <SolidColorBrush x:Key="TextAccentFillColorBrush1" Color="White"/>
@@ -21,7 +29,13 @@
     <SolidColorBrush x:Key="NavigationBarButtonForeground" Color="White"/>
     <SolidColorBrush x:Key="NavigationBarButtonBorderBrush" Color="Transparent"/>
 
+    
     <!-- #TextBlock -->
     <SolidColorBrush x:Key="TextBlockForeground" Color="Black"/>
+    
+    
+    <!-- #Window -->
+    <SolidColorBrush x:Key="WindowBackground" Color="{StaticResource WindowBackgroundPrimary100}"/>
+    <SolidColorBrush x:Key="WindowForeground" Color="{StaticResource TextFillColorPrimary100}"/>
 
 </ResourceDictionary>

@@ -36,6 +36,23 @@ namespace Chrono.Services
         }
 
         /// <summary>
+        /// Creates a <see cref="BookHeader"/> instance from a JSON
+        /// file.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        /// <exception cref="FileLoadException">Thrown if the string
+        /// found in the JSON file cannot be deserialized</exception>
+        public static BookHeader LoadBookHeaderFromJsonFile(string filePath)
+        {
+            ArgumentNullException.ThrowIfNullOrEmpty(filePath);
+            string jsonString = LoadJsonStringFromFile(filePath);
+            return JsonConvert.DeserializeObject<BookHeader>(jsonString) ??
+                throw new FileLoadException("Unable to load book header " +
+                "from JSON file");
+        }
+
+        /// <summary>
         /// Reads data string from a JSON file.
         /// </summary>
         /// <param name="filePath"></param>

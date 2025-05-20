@@ -16,6 +16,8 @@ namespace Chrono.Models
 
         public DateTime CreatedDateTime { get; init; }
 
+        public DateTime DateTimeSaved { get; init; }
+
         public Guid ID { get; init; }
 
         public string Name { get; init; } = string.Empty;

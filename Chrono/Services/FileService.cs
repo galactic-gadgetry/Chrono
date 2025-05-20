@@ -32,5 +32,15 @@ namespace Chrono.Services
 
             File.Delete(filePath);
         }
+
+        /// <summary>
+        /// Returns an array of all files in the
+        /// <seealso cref="SaveFileDirectory"/>
+        /// </summary>
+        /// <returns></returns>
+        public static string[] GetSaveFiles()
+        {
+            return Directory.GetFiles(SaveFileDirectory);
+        }
     }
 }

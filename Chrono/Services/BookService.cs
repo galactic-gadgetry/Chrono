@@ -114,6 +114,7 @@ namespace Chrono.Services
             {
                 BookSaveFilePath = book.SaveFilePath,
                 CreatedDateTime = book.CreatedDateTime,
+                DateTimeSaved = book.DateTimeSaved,
                 ID = book.ID,
                 Name = book.Name,
                 SaveFilePath = book.HeaderSaveFilePath,
@@ -130,6 +131,36 @@ namespace Chrono.Services
             };
 
             return book;
+        }
+
+        /// <summary>
+        /// Retrieves the saved book headers on fiile.
+        /// </summary>
+        /// <returns></returns>
+        public static List<BookHeader> GetSavedBookHeaders()
+        {
+            string[] files = FileService.GetSaveFiles();
+
+            IEnumerable<string> headerFiles =
+                files.Where<string>(f => f.Contains("_head"));
+
+            List<BookHeader> headers = new();
+            foreach (string filePath in headerFiles)
+            {
+                headers.Add(LoadBookHeaderFromJson(filePath));
+            }
+
+            return headers;
+        }
+
+        /// <summary>
+        /// Leads a <see cref="BookHeader"/> instance from a JSON file.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static BookHeader LoadBookHeaderFromJson(string filePath)
+        {
+            return JsonService.LoadBookHeaderFromJsonFile(filePath);
         }
 
         /// <summary>
@@ -176,7 +207,9 @@ namespace Chrono.Services
                     "void state");
             }
 
-            // Create a book header for saving.
+            // Set the date last modified and create a book header
+            // for saving.
+            book.DateTimeSaved = DateTime.Now;
             BookHeader header = GetNewBookHeader(book);
 
             // Set the Book instance's HasUnsavedChanges property false

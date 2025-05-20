@@ -31,6 +31,9 @@ namespace Chrono.Models
         public DateTime CreatedDateTime { get; init; }
 
 
+        public DateTime DateTimeSaved { get; set; }
+
+
 
         public bool HasUnsavedChanges
         {
@@ -80,6 +83,7 @@ namespace Chrono.Models
         public Book()
         {
             CreatedDateTime = DateTime.Now;
+            DateTimeSaved = CreatedDateTime;
             ID = Guid.NewGuid();
             HeaderSaveFilePath = Path.Combine(
                 FileService.SaveFileDirectory,

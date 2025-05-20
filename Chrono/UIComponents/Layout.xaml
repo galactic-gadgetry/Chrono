@@ -14,7 +14,7 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -43,6 +43,9 @@
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type vm:CreateNewBookViewModel}">
                                 <view:CreateNewBook/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:SavedBooksViewModel}">
+                                <view:SavedBooksView/>
                             </DataTemplate>
                         </ContentControl.Resources>
                     </ContentControl>
