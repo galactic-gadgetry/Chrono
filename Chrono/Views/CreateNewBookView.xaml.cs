@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Chrono.Views
 {
     /// <summary>
-    /// Interaction logic for CreateNewBook.xaml
+    /// Interaction logic for CreateNewBookView.xaml
     /// </summary>
-    public partial class CreateNewBook : UserControl
+    public partial class CreateNewBookView : UserControl
     {
-        public CreateNewBook()
+        public CreateNewBookView()
         {
             InitializeComponent();
         }

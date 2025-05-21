@@ -25,6 +25,10 @@ namespace Chrono.Utilities
                     return new LayoutNavigationService<CreateNewBookViewModel>(
                         navigationStore,
                         () => new CreateNewBookViewModel(bookStore, navigationStore));
+                case "edit book details":
+                    return new LayoutNavigationService<EditBookDetailsViewModel>(
+                        navigationStore,
+                        () => new EditBookDetailsViewModel(bookStore, navigationStore));
                 case "layout":
                     return new NavigationService<LayoutViewModel>(
                         navigationStore,

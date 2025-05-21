@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Chrono.Views.CreateNewBook"
+﻿<UserControl x:Class="Chrono.Views.CreateNewBookView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Chrono.Views"
              mc:Ignorable="d" 
              d:DesignHeight="950" d:DesignWidth="1500"
-             FocusManager.FocusedElement="{Binding ElementName=NameTextBox}">
+             d:Background="White">
     
     <Grid>
         <Border Style="{StaticResource CenterViewBorderStyle}">
@@ -21,23 +21,23 @@
                 <!-- #Title -->
                 <Border Grid.Row="0">
                     <Label
-                        Content="Create New Log Book"
-                        Style="{StaticResource ViewTitleLabelStyle}"/>
+                Content="Create New Log Book"
+                Style="{StaticResource ViewTitleLabelStyle}"/>
                 </Border>
-                
+
                 <!-- #Content -->
                 <Border Grid.Row="1" Style="{StaticResource CenterViewContentsBorderStyle}">
                     <StackPanel>
                         <Label
-                            Content="Name"
-                            Style="{StaticResource InputFieldLabelStyle}"/>
+                    Content="Name"
+                    Style="{StaticResource InputFieldLabelStyle}"/>
                         <TextBox
-                            x:Name="NameTextBox"
-                            Text="{Binding NameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            Style="{StaticResource InputFieldTextBoxStyle}"/>
+                    x:Name="NameTextBox"
+                    Text="{Binding NameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Style="{StaticResource InputFieldTextBoxStyle}"/>
                     </StackPanel>
                 </Border>
-                
+
                 <!-- #Controls -->
                 <Border Grid.Row="2">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -46,17 +46,17 @@
                         </StackPanel.Resources>
 
                         <Button
-                            Content="Create"
-                            Command="{Binding CreateButtonClickedCommand}"
-                            IsEnabled="{Binding CanCreateBook}"
-                            IsDefault="True"/>
+                    Content="Create"
+                    Command="{Binding CreateButtonClickedCommand}"
+                    IsEnabled="{Binding CanCreateBook}"
+                    IsDefault="True"/>
                         <Button
-                            Content="Cancel"
-                            Command="{Binding CancelButtonClickedCommand}"/>
+                    Content="Cancel"
+                    Command="{Binding CancelButtonClickedCommand}"/>
                     </StackPanel>
                 </Border>
             </Grid>
-            
+
         </Border>
     </Grid>
     

@@ -42,7 +42,10 @@
                                 <view:BookDetailsView/>
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type vm:CreateNewBookViewModel}">
-                                <view:CreateNewBook/>
+                                <view:CreateNewBookView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:EditBookDetailsViewModel}">
+                                <view:EditBookDetailsView/>
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type vm:SavedBooksViewModel}">
                                 <view:SavedBooksView/>

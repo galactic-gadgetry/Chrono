@@ -63,7 +63,15 @@ namespace Chrono.Models
         public bool IsBookVoid = false;
 
 
-        public string Name { get; set; } = string.Empty;
+        public string Name
+        {
+            get => name;
+            set
+            {
+                name = value;
+                HasUnsavedChanges = true;
+            }
+        }
 
 
         public string SaveFilePath { get; init; } = string.Empty;

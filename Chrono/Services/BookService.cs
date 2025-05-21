@@ -121,6 +121,15 @@ namespace Chrono.Services
         }
 
 
+        public static void EditBookDetails(BookDTO dto, Book book)
+        {
+            ArgumentNullException.ThrowIfNull(dto, nameof(dto));
+            ArgumentNullException.ThrowIfNull(book, nameof(book));
+
+            book.Name = dto.Name;
+        }
+
+
         public static BookHeader GetNewBookHeader(Book book)
         {
             return new BookHeader()

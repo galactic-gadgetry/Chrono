@@ -21,6 +21,11 @@ namespace Chrono.ViewModels
         private readonly BookStore _bookStore;
 
         /// <summary>
+        /// Used to navigate to the Edit Book Details view.
+        /// </summary>
+        private readonly INavigate _editBookDetailsNavigationService;
+
+        /// <summary>
         /// Used to manage the app's navigation state.
         /// </summary>
         private readonly NavigationStore _navigationStore;
@@ -68,6 +73,9 @@ namespace Chrono.ViewModels
             EditButtonClickedCommand = new RelayCommand(
                 new Action<object?>(OnEditButtonClicked));
 
+            _editBookDetailsNavigationService =
+                ServiceFactory.CreateNavigationService(
+                    "edit book details", _bookStore, _navigationStore);
             _startScreenNavigationService =
                 ServiceFactory.CreateNavigationService(
                     "start screen", _bookStore, _navigationStore);
@@ -108,10 +116,13 @@ namespace Chrono.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// Handles the Edit button click event.
+        /// </summary>
+        /// <param name="obj"></param>
         private void OnEditButtonClicked(object? obj)
         {
-            throw new NotImplementedException();
+            _editBookDetailsNavigationService.Navigate();
         }
     }
 }
