@@ -25,6 +25,10 @@ namespace Chrono.ViewModels
         private readonly NavigationStore _navigationStore;
 
 
+        // Backing Fields
+        private List<BookHeader> savedBooks = new();
+
+
         /// <summary>
         /// True if the <seealso cref="SavedBooks"/> collection
         /// count is less than 1, false otherwise
@@ -34,7 +38,15 @@ namespace Chrono.ViewModels
         /// <summary>
         /// Collection of saved book header files.
         /// </summary>
-        public List<BookHeader> SavedBooks { get; set; }
+        public List<BookHeader> SavedBooks
+        {
+            get => savedBooks;
+            set
+            {
+                savedBooks = value;
+                OnPropertyChanged(nameof(SavedBooks));
+            }
+        }
 
 
         /// <summary>
@@ -73,6 +85,20 @@ namespace Chrono.ViewModels
         }
 
 
+        /// <summary>
+        /// Deletes the book files associated with the header.
+        /// </summary>
+        /// <param name="header"></param>
+        private void DeleteBookRequested(BookHeader header)
+        {
+            BookService.DeleteBookFile(header);
+
+            OnInfoUpdated($"Log book '{header.Name}' deleted");
+
+            SavedBooks = BookService.GetSavedBookHeaders().
+                OrderByDescending(b => b.DateTimeSaved).ToList();
+        }
+
         
         private void OnBackButtonClicked(object? obj)
         {
@@ -89,10 +115,28 @@ namespace Chrono.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// Handles the saved book card's Delete button click event.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <exception cref="InvalidOperationException">Thrown if
+        /// the caller is not of type BookHeader</exception>
         private void OnSavedBookCardDeleteButtonClicked(object? obj)
         {
-            throw new NotImplementedException();
+            BookHeader? header = obj as BookHeader;
+            if (header == null)
+            {
+                throw new InvalidOperationException("The caller must " +
+                    "be a BookHeader object");
+            }
+
+            bool result =
+                DialogService.PromptUserWithDeleteConfirmationMessage(header);
+
+            if (result)
+            {
+                DeleteBookRequested(header);
+            }
         }
 
 

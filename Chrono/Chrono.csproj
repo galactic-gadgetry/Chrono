@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="Resources\Images\Icons\Activity\activity_white.png" />
     <None Remove="Resources\Images\Icons\Arrow-Left-Circle\arrow-left-circle_black.png" />
+    <None Remove="Resources\Images\Icons\Arrow-Right\arrow-right_black.png" />
     <None Remove="Resources\Images\Icons\Book-Open\book-open_black.png" />
     <None Remove="Resources\Images\Icons\Book\book_black.png" />
     <None Remove="Resources\Images\Icons\Briefcase\briefcase_white.png" />
@@ -30,6 +31,7 @@
   <ItemGroup>
     <Resource Include="Resources\Images\Icons\Activity\activity_white.png" />
     <Resource Include="Resources\Images\Icons\Arrow-Left-Circle\arrow-left-circle_black.png" />
+    <Resource Include="Resources\Images\Icons\Arrow-Right\arrow-right_black.png" />
     <Resource Include="Resources\Images\Icons\Book-Open\book-open_black.png" />
     <Resource Include="Resources\Images\Icons\Book\book_black.png" />
     <Resource Include="Resources\Images\Icons\Briefcase\briefcase_white.png" />

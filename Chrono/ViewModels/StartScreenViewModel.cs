@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Chrono.Commands;
+using Chrono.Models;
 using Chrono.Services;
 using Chrono.Stores;
 using Chrono.Utilities;
@@ -38,6 +39,29 @@ namespace Chrono.ViewModels
         /// </summary>
         private readonly INavigate _savedBooksNavigationService;
 
+
+        // Backing Fields
+        private List<BookHeader> savedBooks = new();
+
+
+        /// <summary>
+        /// True if the <seealso cref="SavedBooks"/> collection count
+        /// is less than 1, false otherwise.
+        /// </summary>
+        public bool NoSavedBooks => SavedBooks.Count < 1;
+
+        /// <summary>
+        /// Collection of saved book header files.
+        /// </summary>
+        public List<BookHeader> SavedBooks
+        {
+            get => savedBooks;
+            set
+            {
+                savedBooks = value;
+                OnPropertyChanged(nameof(SavedBooks));
+            }
+        }
 
         /// <summary>
         /// Text for the Welcome Message label.
@@ -76,6 +100,22 @@ namespace Chrono.ViewModels
         /// </summary>
         public ICommand OpenExistingLogBookButtonClickedCommand { get; }
 
+        /// <summary>
+        /// Executed when the More Documents hyperlink is clicked.
+        /// </summary>
+        public ICommand MoreDocumentsHyperlinkClickedCommand { get; }
+
+        /// <summary>
+        /// Executed when a saved book card's Delete button is
+        /// clicked.
+        /// </summary>
+        public ICommand SavedBookCardDeleteButtonClickedCommand { get; }
+
+        /// <summary>
+        /// Executed when a saved book card's Load button is clicked.
+        /// </summary>
+        public ICommand SavedBookCardLoadButtonClickedCommand { get; }
+
 
 
         public StartScreenViewModel(BookStore bookStore, NavigationStore navigationStore)
@@ -83,10 +123,18 @@ namespace Chrono.ViewModels
             _bookStore = bookStore;
             _navigationStore = navigationStore;
 
+            SavedBooks = GetSavedBooksList();
+
             CreateNewLogBookButtonClickedCommand = new RelayCommand(
                 new Action<object?>(OnCreateNewLogBookButtonClicked));
             OpenExistingLogBookButtonClickedCommand = new RelayCommand(
                 new Action<object?>(OnOpenExistingLogBookButtonClicked));
+            MoreDocumentsHyperlinkClickedCommand = new RelayCommand(
+                new Action<object?>(OnMoreDocumentsHyperlinkClicked));
+            SavedBookCardDeleteButtonClickedCommand = new RelayCommand(
+                new Action<object?>(OnSavedBookCardDeleteButtonClicked));
+            SavedBookCardLoadButtonClickedCommand = new RelayCommand(
+                new Action<object?>(OnSavedBookCardLoadButtonClicked));
 
             _createNewBookNavigationService =
                 ServiceFactory.CreateNavigationService(
@@ -99,6 +147,39 @@ namespace Chrono.ViewModels
                     "saved books", _bookStore, _navigationStore);
         }
 
+
+        /// <summary>
+        /// Deletes the book files associated with the header.
+        /// </summary>
+        /// <param name="header"></param>
+        private void DeleteBookRequested(BookHeader header)
+        {
+            BookService.DeleteBookFile(header);
+
+            OnInfoUpdated($"Log book '{header.Name}' deleted");
+
+            // Reset the SavedBooks collection.
+            SavedBooks = GetSavedBooksList();
+        }
+
+        /// <summary>
+        /// Retrieves the 10 most recent saved book header files.
+        /// </summary>
+        /// <returns></returns>
+        private List<BookHeader> GetSavedBooksList()
+        {
+            List<BookHeader> headers = BookService.GetSavedBookHeaders().
+                OrderByDescending(b => b.DateTimeSaved).ToList();
+
+            if (headers.Count > 10)
+            {
+                return headers.GetRange(0, 10);
+            }
+            else
+            {
+                return headers;
+            }
+        }
 
         /// <summary>
         /// Handles the Create New Log Book button click event.
@@ -118,6 +199,46 @@ namespace Chrono.ViewModels
         {
             _layoutNavigationService.Navigate();
             _savedBooksNavigationService.Navigate();
+        }
+
+        /// <summary>
+        /// Handles the More Documents hyperlink click event.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void OnMoreDocumentsHyperlinkClicked(object? obj)
+        {
+            _layoutNavigationService.Navigate();
+            _savedBooksNavigationService.Navigate();
+        }
+
+        /// <summary>
+        /// Handles the saved book card's Delete button click event.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <exception cref="InvalidOperationException">Thrown if
+        /// the caller is not of type BookHeader</exception>
+        private void OnSavedBookCardDeleteButtonClicked(object? obj)
+        {
+            BookHeader? header = obj as BookHeader;
+            if (header == null)
+            {
+                throw new InvalidOperationException("The caller must " +
+                    "be a BookHeader object");
+            }
+
+            bool result =
+                DialogService.PromptUserWithDeleteConfirmationMessage(header);
+
+            if (result)
+            {
+                DeleteBookRequested(header);
+            }
+        }
+
+
+        private void OnSavedBookCardLoadButtonClicked(object? obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

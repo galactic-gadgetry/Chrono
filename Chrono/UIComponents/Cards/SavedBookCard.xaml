@@ -49,7 +49,11 @@
                 </Border>
 
                 <!-- #Controls -->
-                <Border Grid.Column="1">
+                <!-- Making this border transparent seems to fix an
+                issue where the SavedBookCard didn't recognize the
+                mouse over when moving from another SavedBookCard
+                in a ListView container. -->
+                <Border Grid.Column="1" Background="Transparent">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel.Resources>
                             <Style TargetType="Button" BasedOn="{StaticResource TransparentIconButtonStyle}">

@@ -92,6 +92,19 @@ namespace Chrono.Services
         }
 
         /// <summary>
+        /// Deletes the book and header files of the book.
+        /// </summary>
+        /// <param name="header"></param>
+        public static void DeleteBookFile(BookHeader header)
+        {
+            ArgumentNullException.ThrowIfNull(header, nameof(header));
+
+            // Delete the book and book header file.
+            FileService.DeleteFile(header.SaveFilePath);
+            FileService.DeleteFile(header.BookSaveFilePath);
+        }
+
+        /// <summary>
         /// Deletes the book and header files of the book store's
         /// current book.
         /// </summary>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Chrono.Models;
 using Chrono.Stores;
 
 namespace Chrono.Services
@@ -13,16 +14,15 @@ namespace Chrono.Services
         /// <summary>
         /// Displays a deletion confirmation message box.
         /// </summary>
-        /// <param name="bookStore"></param>
-        /// <returns>True if the user wishes to continue, false
-        /// otherwise</returns>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static bool PromptUserWithDeleteConfirmationMessage(
-            BookStore bookStore)
+            string name)
         {
             string message = "Are you sure that you want to delete " +
-                $"the log book ('{bookStore.CurrentBook.Name}')? " +
-                $"This action can't be undone.";
-            string caption = $"{bookStore.CurrentBook.Name}";
+                $" the log book ('{name}')? " +
+                "This action can't be undone.";
+            string caption = $"Delete '{name}'";
             MessageBoxButton button = MessageBoxButton.YesNo;
             MessageBoxImage icon = MessageBoxImage.Exclamation;
 
@@ -36,6 +36,33 @@ namespace Chrono.Services
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Displays a deletion confirmation message box.
+        /// </summary>
+        /// <param name="header"></param>
+        /// <returns></returns>
+        public static bool PromptUserWithDeleteConfirmationMessage(
+            BookHeader header)
+        {
+            ArgumentNullException.ThrowIfNull(header, nameof(header));
+
+            return PromptUserWithDeleteConfirmationMessage(header.Name);
+        }
+
+        /// <summary>
+        /// Displays a deletion confirmation message box.
+        /// </summary>
+        /// <param name="bookStore"></param>
+        /// <returns>True if the user wishes to continue, false
+        /// otherwise</returns>
+        public static bool PromptUserWithDeleteConfirmationMessage(
+            BookStore bookStore)
+        {
+            ArgumentNullException.ThrowIfNull(bookStore, nameof(bookStore));
+
+            return PromptUserWithDeleteConfirmationMessage(bookStore.CurrentBook.Name);
         }
 
         /// <summary>

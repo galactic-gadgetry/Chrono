@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Chrono.Views"
+             xmlns:card="clr-namespace:Chrono.UIComponents.Cards"
              mc:Ignorable="d" 
              d:DesignHeight="950" d:DesignWidth="2000"
              d:Background="White">
@@ -92,9 +93,84 @@
                             Content="Recent"
                             HorizontalAlignment="Left"
                             FontSize="14" FontWeight="Bold"/>
-                        <Label
-                            Content="There doesn't seem to be anything here."
-                            HorizontalAlignment="Center"/>
+                        <Grid HorizontalAlignment="Left">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" MinWidth="300" MaxWidth="565"/>
+                                <ColumnDefinition Width="*" MinWidth="150" MaxWidth="225"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel
+                                Grid.Column="0" Grid.Row="0"
+                                Orientation="Horizontal"
+                                Margin="15,10,0,10">
+                                <Image Source="{StaticResource BookBlack}" Height="18"/>
+                                <Label Content="Name"/>
+                            </StackPanel>
+
+                            <Label
+                                Grid.Column="1" Grid.Row="0"
+                                Content="Date modified"
+                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                            <ListView
+                                Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                                x:Name="SavedBooksListView"
+                                ItemsSource="{Binding SavedBooks}"
+                                BorderBrush="{StaticResource BorderBrushPrimary1}" BorderThickness="0,1,0,0">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <card:SavedBookCard
+                                            NameText="{Binding Name}"
+                                            StatusText="{Binding Status}"
+                                            DateModifiedText="{Binding DateTimeSaved}"
+                                            Tag="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListViewItem}, UpdateSourceTrigger=PropertyChanged}"
+                                            DeleteButtonClickedCommand="{Binding DataContext.SavedBookCardDeleteButtonClickedCommand, ElementName=SavedBooksListView}"
+                                            DeleteButtonClickedCommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}"
+                                            LoadButtonClickedCommand="{Binding DataContext.SavedBookCardLoadButtonClickedCommand, ElementName=SavedBooksListView}"
+                                            LoadButtonClickedCommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                            <Label
+                                Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
+                                x:Name="NoSavedBooksLabel"
+                                Content="There doesn't seem to be anything here."
+                                HorizontalAlignment="Center"
+                                Visibility="{Binding NoSavedBooks, Converter={StaticResource BoolToVis}}"/>
+                            <Border
+                                Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
+                                HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Visibility, ElementName=NoSavedBooksLabel}" Value="Visible">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center">
+                                        <Hyperlink Command="{Binding MoreDocumentsHyperlinkClickedCommand}">
+                                            More documents
+                                        </Hyperlink>
+                                    </TextBlock>
+                                    <Button
+                                        Style="{StaticResource TransparentIconButtonStyle}"
+                                        Margin="0" Padding="0"
+                                        Command="{Binding MoreDocumentsHyperlinkClickedCommand}">
+                                        <Image Source="{StaticResource ArrowRightBlack}" Height="18"/>
+                                    </Button>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
                     </StackPanel>
                 </Border>
             </Grid>

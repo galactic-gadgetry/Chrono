@@ -6,6 +6,8 @@
 
     <BitmapImage x:Key="ArrowLeftCircleBlack" UriSource="/Chrono;component/Resources/Images/Icons/Arrow-Left-Circle/arrow-left-circle_black.png"/>
 
+    <BitmapImage x:Key="ArrowRightBlack" UriSource="/Chrono;component/Resources/Images/Icons/Arrow-Right/arrow-right_black.png"/>
+
     <BitmapImage x:Key="BookBlack" UriSource="/Chrono;component/Resources/Images/Icons/Book/book_black.png"/>
 
     <BitmapImage x:Key="BookOpenBlack" UriSource="/Chrono;component/Resources/Images/Icons/Book-Open/book-open_black.png"/>

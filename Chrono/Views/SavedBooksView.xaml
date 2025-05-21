@@ -85,8 +85,8 @@
                             <card:SavedBookCard
                                 NameText="{Binding Name}"
                                 StatusText="{Binding Status}"
-                                Tag="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListViewItem}, UpdateSourceTrigger=PropertyChanged}"
                                 DateModifiedText="{Binding DateTimeSaved}"
+                                Tag="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListViewItem}, UpdateSourceTrigger=PropertyChanged}"
                                 DeleteButtonClickedCommand="{Binding DataContext.SavedBookCardDeleteButtonClickedCommand, ElementName=SavedBooksListView}"
                                 DeleteButtonClickedCommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}"
                                 LoadButtonClickedCommand="{Binding DataContext.SavedBookCardLoadButtonClickedCommand, ElementName=SavedBooksListView}"

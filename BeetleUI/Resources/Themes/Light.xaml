@@ -28,8 +28,12 @@
     <SolidColorBrush x:Key="NavigationBarButtonBackgroundMouseOver" Color="{StaticResource AccentColor120}"/>
     <SolidColorBrush x:Key="NavigationBarButtonForeground" Color="White"/>
     <SolidColorBrush x:Key="NavigationBarButtonBorderBrush" Color="Transparent"/>
-
     
+    
+    <!-- #Hyperlink -->
+    <SolidColorBrush x:Key="HyperlinkForeground" Color="{StaticResource TextFillColorPrimary100}"/>
+
+
     <!-- #TextBlock -->
     <SolidColorBrush x:Key="TextBlockForeground" Color="Black"/>
     
