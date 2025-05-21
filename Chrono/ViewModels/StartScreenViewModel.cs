@@ -15,6 +15,11 @@ namespace Chrono.ViewModels
     class StartScreenViewModel : ViewModelBase
     {
         /// <summary>
+        /// Used to navigate to the Book Details view.
+        /// </summary>
+        private readonly INavigate _bookDetailsNavigationService;
+
+        /// <summary>
         /// Used to manage the app's current book.
         /// </summary>
         private readonly BookStore _bookStore;
@@ -136,6 +141,9 @@ namespace Chrono.ViewModels
             SavedBookCardLoadButtonClickedCommand = new RelayCommand(
                 new Action<object?>(OnSavedBookCardLoadButtonClicked));
 
+            _bookDetailsNavigationService =
+                ServiceFactory.CreateNavigationService(
+                    "book details", _bookStore, _navigationStore);
             _createNewBookNavigationService =
                 ServiceFactory.CreateNavigationService(
                     "create new book", _bookStore, _navigationStore);
@@ -179,6 +187,21 @@ namespace Chrono.ViewModels
             {
                 return headers;
             }
+        }
+
+        /// <summary>
+        /// Loads the book from a save file to the book store's
+        /// current book and navigates to the Book Details view.
+        /// </summary>
+        /// <param name="header"></param>
+        private void LoadBookRequested(BookHeader header)
+        {
+            _ = BookService.LoadBookToBookStoreFromJson(
+                _bookStore, header.BookSaveFilePath);
+
+            // Navigate to the Book Details view.
+            _layoutNavigationService.Navigate();
+            _bookDetailsNavigationService.Navigate();
         }
 
         /// <summary>
@@ -235,10 +258,21 @@ namespace Chrono.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// Handles the saved book card's Load button click event.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <exception cref="InvalidOperationException"></exception>
         private void OnSavedBookCardLoadButtonClicked(object? obj)
         {
-            throw new NotImplementedException();
+            BookHeader? header = obj as BookHeader;
+            if (header == null)
+            {
+                throw new InvalidOperationException("The caller must " +
+                    "be a BookHeader object");
+            }
+
+            LoadBookRequested(header);
         }
     }
 }
