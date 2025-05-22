@@ -2,8 +2,58 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
+    <Thickness x:Key="ButtonThemePadding">11,5</Thickness>
+    <Thickness x:Key="ButtonThemeBorderThickness">1</Thickness>
+
+
     <Style x:Key="DefaultButtonStyle" TargetType="Button">
         
+    </Style>
+
+
+    <Style x:Key="NavigationBarButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource NavigationBarButtonBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource NavigationBarButtonForeground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource NavigationBarButtonBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="{StaticResource ButtonThemeBorderThickness}"/>
+        <Setter Property="Padding" Value="15,10"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        x:Name="ContentBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Height="{TemplateBinding Height}"
+                        Width="{TemplateBinding Width}"
+                        MinHeight="{TemplateBinding MinHeight}"
+                        MinWidth="{TemplateBinding MinWidth}"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                        CornerRadius="{TemplateBinding Border.CornerRadius}"
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <ContentPresenter
+                            x:Name="PART_ContentPresenter"
+                            Focusable="False"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"
+                            RecognizesAccessKey="True"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource NavigationBarButtonBackgroundMouseOver}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 

@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="Chrono.UIComponents.NavigationBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chrono.UIComponents"
+             xmlns:btn="clr-namespace:Chrono.UIComponents.Buttons"
+             mc:Ignorable="d" 
+             d:DesignHeight="950" d:DesignWidth="140">
+    
+    <Grid>
+        <Border Background="{StaticResource LayerFillColorBrush1}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Margin="0,50,0,0">
+                    <StackPanel>
+                        <!-- #App Title -->
+                        <Label
+                            Content="Chrono"
+                            Foreground="{StaticResource TextAccentFillColorBrush1}"
+                            HorizontalAlignment="Center"
+                            FontSize="22" FontWeight="DemiBold"/>
+                        
+                        <!-- #Navigation Buttons -->
+                        <btn:NavigationBarButton
+                            ButtonImageSource="{StaticResource CalendarWhite}"
+                            ButtonText="Time Sheet"
+                            ButtonClickedCommand="{Binding DailyTimeSheetButtonClickedCommand}"/>
+                        <btn:NavigationBarButton
+                            ButtonImageSource="{StaticResource ActivityWhite}"
+                            ButtonText="Calculator"
+                            ButtonClickedCommand="{Binding CalculatorButtonClickedCommand}"/>
+                        <btn:NavigationBarButton
+                            ButtonImageSource="{StaticResource BriefcaseWhite}"
+                            ButtonText="Projects"
+                            ButtonClickedCommand="{Binding ProjectsButtonClickedCommand}"/>
+
+                        <Border
+                            BorderBrush="{StaticResource BorderBrushPrimary1}" BorderThickness="0,1,0,0"
+                            Margin="10"/>
+
+                        <btn:NavigationBarButton
+                            ButtonText="Close"
+                            ButtonClickedCommand="{Binding CloseButtonClickedCommand}"/>
+                    </StackPanel>
+                </Border>
+                
+                <!-- #Settings -->
+                <Border Grid.Row="1" Margin="0,0,0,15">
+                    <btn:NavigationBarButton
+                        ButtonText="Log Book"
+                        ButtonClickedCommand="{Binding LogBookButtonClickedCommand}"/>
+                </Border>
+            </Grid>
+            
+        </Border>
+    </Grid>
+    
+</UserControl>

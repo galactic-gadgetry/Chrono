@@ -5,8 +5,15 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Resources/Themes/Light.xaml"/>
 
+        <ResourceDictionary Source="Resources/Dictionaries/Variables.xaml"/>
+
         <ResourceDictionary Source="Controls/Button.xaml"/>
+        <ResourceDictionary Source="Controls/Hyperlink.xaml"/>
         <ResourceDictionary Source="Controls/Label.xaml"/>
+        <ResourceDictionary Source="Controls/ListView.xaml"/>
+        <ResourceDictionary Source="Controls/TextBlock.xaml"/>
+        <ResourceDictionary Source="Controls/TextBox.xaml"/>
+        <ResourceDictionary Source="Controls/Window.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>

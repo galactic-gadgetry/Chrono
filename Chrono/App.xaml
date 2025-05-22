@@ -8,6 +8,15 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/BeetleUi;component/BeetleUI.xaml"/>
+
+                <ResourceDictionary Source="Resources/Dictionaries/Borders.xaml"/>
+                <ResourceDictionary Source="Resources/Dictionaries/Buttons.xaml"/>
+                <ResourceDictionary Source="Resources/Dictionaries/Converters.xaml"/>
+                <ResourceDictionary Source="Resources/Dictionaries/Images.xaml"/>
+                <ResourceDictionary Source="Resources/Dictionaries/Palette.xaml"/>
+                <ResourceDictionary Source="Resources/Dictionaries/TextControls.xaml"/>
+                <ResourceDictionary Source="Resources/Dictionaries/Typography.xaml"/>
+                <ResourceDictionary Source="Resources/Dictionaries/Variables.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         

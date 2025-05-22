@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="Chrono.UIComponents.Cards.SavedBookCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chrono.UIComponents.Cards"
+             mc:Ignorable="d" d:Background="White">
+
+    <Grid x:Name="CardGrid">
+        <Border>
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrushPrimary1}"/>
+                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    <Style.Triggers>
+                        <!-- #Mouse over behavior -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ControlBackgroundFillColorBrush2}"/>
+                        </Trigger>
+                        <!-- #Selected behavior -->
+                        <DataTrigger Binding="{Binding Path=Tag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ControlBackgroundFillColorBrush2}"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="1.5"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="435"/>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- #Book Info -->
+                <Border
+                    Grid.Column="0">
+                    <StackPanel>
+                        <Label
+                            Content="{Binding NameText, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                            Padding="10,5,10,2"
+                            FontSize="16"/>
+                        <Label
+                            Content="{Binding StatusText, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                            Padding="10,0,10,5"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- #Controls -->
+                <!-- Making this border transparent seems to fix an
+                issue where the SavedBookCard didn't recognize the
+                mouse over when moving from another SavedBookCard
+                in a ListView container. -->
+                <Border Grid.Column="1" Background="Transparent">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="Button" BasedOn="{StaticResource TransparentIconButtonStyle}">
+                                <Setter Property="Margin" Value="2"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=CardGrid}" Value="False">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+
+                            <Style TargetType="Image">
+                                <Setter Property="Height" Value="18"/>
+                            </Style>
+                        </StackPanel.Resources>
+
+                        <Button
+                            Command="{Binding LoadButtonClickedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                            CommandParameter="{Binding LoadButtonClickedCommandParameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
+                            <Image Source="{StaticResource BookOpenBlack}"/>
+                        </Button>
+
+                        <Button
+                            Command="{Binding DeleteButtonClickedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                            CommandParameter="{Binding DeleteButtonClickedCommandParameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
+                            <Image Source="{StaticResource TrashBlack}"/>
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+                <!-- #Date Modified -->
+                <Border
+                    Grid.Column="2">
+                    <Label
+                        Content="{Binding DateModifiedText, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+    
+</UserControl>

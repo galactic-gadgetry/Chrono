@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="Chrono.Views.EditBookDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Chrono.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="950" d:DesignWidth="1500"
+             d:Background="White"
+             FocusManager.FocusedElement="{Binding ElementName=NameTextBox}">
+    
+    <Grid>
+        <Border Style="{StaticResource CenterViewBorderStyle}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- #Title -->
+                <Border Grid.Row="0">
+                    <Label
+                Content="Edit Log Book Details"
+                Style="{StaticResource ViewTitleLabelStyle}"/>
+                </Border>
+
+                <!-- #Content -->
+                <Border Grid.Row="1" Style="{StaticResource CenterViewContentsBorderStyle}">
+                    <StackPanel>
+                        <Label
+                    Content="Name"
+                    Style="{StaticResource InputFieldLabelStyle}"/>
+                        <TextBox
+                    x:Name="NameTextBox"
+                    Text="{Binding NameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Style="{StaticResource InputFieldTextBoxStyle}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- #Controls -->
+                <Border Grid.Row="2">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <StackPanel.Resources>
+                            <Style TargetType="Button" BasedOn="{StaticResource StandardControlButtonStyle}"/>
+                        </StackPanel.Resources>
+
+                        <Button
+                    Content="Save"
+                    Command="{Binding SaveButtonClickedCommand}"
+                    IsEnabled="{Binding CanSaveDetails}"
+                    IsDefault="True"/>
+                        <Button
+                    Content="Cancel"
+                    Command="{Binding CancelButtonClickedCommand}"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+    
+</UserControl>
