@@ -129,6 +129,17 @@ namespace Chrono.Services
             book.Name = dto.Name;
         }
 
+        
+        public static Book GetNewBook(BookDTO dto)
+        {
+            Book book = new()
+            {
+                Name = dto.Name,
+            };
+
+            return book;
+        }
+
 
         public static BookHeader GetNewBookHeader(Book book)
         {
@@ -142,17 +153,6 @@ namespace Chrono.Services
                 SaveFilePath = book.HeaderSaveFilePath,
                 Status = book.StatusString,
             };
-        }
-
-        
-        public static Book GetNewBook(BookDTO dto)
-        {
-            Book book = new()
-            {
-                Name = dto.Name,
-            };
-
-            return book;
         }
 
         /// <summary>
@@ -270,7 +270,7 @@ namespace Chrono.Services
         /// Sets the book store's current book to a void state book.
         /// </summary>
         /// <param name="bookStore"></param>
-        public static void SetBookStoreCurrentBookToVoidState(BookStore bookStore)
+        private static void SetBookStoreCurrentBookToVoidState(BookStore bookStore)
         {
             ArgumentNullException.ThrowIfNull(bookStore, nameof(bookStore));
 
