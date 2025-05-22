@@ -16,9 +16,7 @@
         </Grid.RowDefinitions>
         
         <!-- #Title -->
-        <Border
-            Grid.Row="0"
-            Margin="40,25">
+        <Border Grid.Row="0" Margin="40,25">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -47,6 +45,7 @@
             </Grid>
         </Border>
 
+        <!-- #Content -->
         <Border
             Grid.Row="1"
             HorizontalAlignment="Left" VerticalAlignment="Top"
