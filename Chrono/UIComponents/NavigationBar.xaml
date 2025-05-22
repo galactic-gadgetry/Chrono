@@ -39,6 +39,14 @@
                             ButtonImageSource="{StaticResource BriefcaseWhite}"
                             ButtonText="Projects"
                             ButtonClickedCommand="{Binding ProjectsButtonClickedCommand}"/>
+
+                        <Border
+                            BorderBrush="{StaticResource BorderBrushPrimary1}" BorderThickness="0,1,0,0"
+                            Margin="10"/>
+
+                        <btn:NavigationBarButton
+                            ButtonText="Close"
+                            ButtonClickedCommand="{Binding CloseButtonClickedCommand}"/>
                     </StackPanel>
                 </Border>
                 

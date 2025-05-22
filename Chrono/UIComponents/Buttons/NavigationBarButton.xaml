@@ -15,15 +15,21 @@
                     <Style TargetType="Button" BasedOn="{StaticResource NavigationBarButtonStyle}"/>
                 </Button.Resources>
 
-                <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
                     <Image
+                        Grid.Column="0"
                         Source="{Binding ButtonImageSource, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
                         Height="16"/>
 
                     <TextBlock
+                        Grid.Column="1"
                         Text="{Binding ButtonText, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
                         Style="{StaticResource NavigationBarButtonTextBlockStyle}"/>
-                </StackPanel>
+                </Grid>
             </Button>
             
         </Border>        

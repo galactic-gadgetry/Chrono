@@ -36,7 +36,7 @@ namespace Chrono.Utilities
                 case "nav bar":
                     return new NavBarNavigationService<NavigationBarViewModel>(
                         navigationStore,
-                        () => new NavigationBarViewModel());
+                        () => new NavigationBarViewModel(bookStore, navigationStore));
                 case "saved books":
                     return new LayoutNavigationService<SavedBooksViewModel>(
                         navigationStore,
