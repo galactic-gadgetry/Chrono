@@ -23,6 +23,9 @@ namespace Chrono.ViewModels
         /// </summary>
         private readonly NavigationStore _navigationStore;
 
+
+        private readonly INavigate _projectsNavigationService;
+
         /// <summary>
         /// Used to navigate to the Start Screen view.
         /// </summary>
@@ -73,6 +76,9 @@ namespace Chrono.ViewModels
             ProjectsButtonClickedCommand = new RelayCommand(
                 new Action<object?>(OnProjectsButtonClicked));
 
+            _projectsNavigationService =
+                ServiceFactory.CreateNavigationService(
+                    "projects", _bookStore, _navigationStore);
             _startScreenNavigationService =
                 ServiceFactory.CreateNavigationService(
                      "start screen", _bookStore, _navigationStore);
@@ -111,7 +117,7 @@ namespace Chrono.ViewModels
 
         private void OnProjectsButtonClicked(object? obj)
         {
-            throw new NotImplementedException();
+            _projectsNavigationService.Navigate();
         }
     }
 }

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Chrono.Views"
+             xmlns:card="clr-namespace:Chrono.UIComponents.Cards"
              mc:Ignorable="d" 
              d:DesignHeight="950" d:DesignWidth="1500"
              d:Background="White">
@@ -49,7 +50,9 @@
                 </Border>
                 
                 <!-- #Projects List -->
-                <Border Grid.Row="1">
+                <Border
+                    Grid.Row="1"
+                    Padding="40,0">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -59,11 +62,11 @@
                         <Border Grid.Row="0">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*" MinWidth="200"/>
+                                    <ColumnDefinition Width="*" MinWidth="80"/>
+                                    <ColumnDefinition Width="*" MinWidth="200"/>
+                                    <ColumnDefinition Width="*" MinWidth="80"/>
+                                    <ColumnDefinition Width="*" MinWidth="65"/>
                                 </Grid.ColumnDefinitions>
 
                                 <Label Grid.Column="0" Content="Name"/>
@@ -75,8 +78,12 @@
                         </Border>
 
                         <Border Grid.Row="1">
-                            <ListView>
-                                
+                            <ListView
+                                x:Name="ProjectsListView"
+                                BorderBrush="{StaticResource BorderBrushPrimary1}" BorderThickness="0,1,0,0">
+                                <card:ProjectListCard/>
+                                <card:ProjectListCard/>
+                                <card:ProjectListCard/>
                             </ListView>
                         </Border>
                     </Grid>

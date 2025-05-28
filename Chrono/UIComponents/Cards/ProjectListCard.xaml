@@ -8,14 +8,37 @@
     
     <Grid>
         <Border>
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrushPrimary1}"/>
+                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    <Style.Triggers>
+                        <!-- #Mouse over behavior -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ControlBackgroundFillColorBrush2}"/>
+                        </Trigger>
+                        <!-- #Selected behavior -->
+                        <DataTrigger Binding="{Binding Path=Tag, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ControlBackgroundFillColorBrush2}"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="1.5"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
 
             <Grid>
+                <Grid.Resources>
+                    <Style TargetType="Label" BasedOn="{StaticResource DefaultLabelStyle}">
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                </Grid.Resources>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                    <ColumnDefinition Width="*" MinWidth="80"/>
+                    <ColumnDefinition Width="*" MinWidth="200"/>
+                    <ColumnDefinition Width="*" MinWidth="80"/>
+                    <ColumnDefinition Width="*" MinWidth="65"/>
                 </Grid.ColumnDefinitions>
 
                 <Label
@@ -33,6 +56,27 @@
                 <Label
                     Grid.Column="3"
                     Content="Active"/>
+
+                <StackPanel
+                    Grid.Column="4"
+                    Orientation="Horizontal">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button" BasedOn="{StaticResource TransparentIconButtonStyle}"/>
+
+                        <Style TargetType="Image">
+                            <Setter Property="Height" Value="18"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <Button>
+                        <Image Source="{StaticResource Edit3Black}"/>
+                    </Button>
+
+                    <Button>
+                        <Image Source="{StaticResource TrashBlack}"/>
+                    </Button>
+                    
+                </StackPanel>
             </Grid>
             
         </Border>
