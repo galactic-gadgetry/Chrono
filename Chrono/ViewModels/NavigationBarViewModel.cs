@@ -14,6 +14,11 @@ namespace Chrono.ViewModels
     class NavigationBarViewModel : ViewModelBase
     {
         /// <summary>
+        /// Used to navigate to the Book Details view.
+        /// </summary>
+        private readonly INavigate _bookDetailsNavigationService;
+
+        /// <summary>
         /// Used to manage the app's current book.
         /// </summary>
         private readonly BookStore _bookStore;
@@ -23,7 +28,9 @@ namespace Chrono.ViewModels
         /// </summary>
         private readonly NavigationStore _navigationStore;
 
-
+        /// <summary>
+        /// Used to navigate to the Projects view.
+        /// </summary>
         private readonly INavigate _projectsNavigationService;
 
         /// <summary>
@@ -76,6 +83,9 @@ namespace Chrono.ViewModels
             ProjectsButtonClickedCommand = new RelayCommand(
                 new Action<object?>(OnProjectsButtonClicked));
 
+            _bookDetailsNavigationService =
+                ServiceFactory.CreateNavigationService(
+                    "book details", _bookStore, _navigationStore);
             _projectsNavigationService =
                 ServiceFactory.CreateNavigationService(
                     "projects", _bookStore, _navigationStore);
@@ -108,13 +118,19 @@ namespace Chrono.ViewModels
             throw new NotImplementedException();
         }
 
-
+        /// <summary>
+        /// Handles the Log Book button click event.
+        /// </summary>
+        /// <param name="obj"></param>
         private void OnLogBookButtonClicked(object? obj)
         {
-            throw new NotImplementedException();
+            _bookDetailsNavigationService.Navigate();
         }
 
-
+        /// <summary>
+        /// Handles the Projects button click event.
+        /// </summary>
+        /// <param name="obj"></param>
         private void OnProjectsButtonClicked(object? obj)
         {
             _projectsNavigationService.Navigate();
