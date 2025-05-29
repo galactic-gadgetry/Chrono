@@ -65,6 +65,16 @@ namespace Chrono.Services
             return PromptUserWithDeleteConfirmationMessage(bookStore.CurrentBook.Name);
         }
 
+
+        public static void PromptUserWithErrorMessageWithOkButton(
+            string caption, string message)
+        {
+            MessageBoxButton button = MessageBoxButton.OK;
+            MessageBoxImage icon = MessageBoxImage.Error;
+
+            MessageBox.Show(message, caption, button, icon);
+        }
+
         /// <summary>
         /// Displays a save changes message box.
         /// </summary>
@@ -74,7 +84,7 @@ namespace Chrono.Services
             BookStore bookStore)
         {
             string message = "Do you want to save changes?";
-            string caption = $"{bookStore.CurrentBook}";
+            string caption = $"{bookStore.CurrentBook.Name}";
             MessageBoxButton button = MessageBoxButton.YesNoCancel;
             MessageBoxImage icon = MessageBoxImage.Question;
 

@@ -13,6 +13,33 @@ namespace Chrono.Services
     static class BookService
     {
         /// <summary>
+        /// Adds the project the book store's current book's
+        /// <see cref="Book.Projects"/> collection.
+        /// </summary>
+        /// <param name="bookStore"></param>
+        /// <param name="project"></param>
+        /// <returns>True if successful, false otherwise</returns>
+        public static (bool, string?) AddProjectToCurrentBook(
+            BookStore bookStore, Project project)
+        {
+            ArgumentNullException.ThrowIfNull(bookStore, nameof(bookStore));
+            ArgumentNullException.ThrowIfNull(project, nameof(project));
+
+            // Validate the project properties and return false if
+            // invalid.
+            Book book = bookStore.CurrentBook;
+            (bool result, string? detail) =
+                ValidateProjectProperties(book, project);
+            if (result == false)
+            {
+                return (false, detail);
+            }
+
+            book.Projects.Add(project);
+            return (true, detail);
+        }
+
+        /// <summary>
         /// Closes the book store's current book.
         /// </summary>
         /// <param name="bookStore"></param>
@@ -76,6 +103,27 @@ namespace Chrono.Services
             SetBookStoreCurrentBook(bookStore, book);
 
             return book;
+        }
+
+        /// <summary>
+        /// Creates a new project and adds it to the book store's
+        /// current book's <see cref="Book.Projects"/> collection.
+        /// </summary>
+        /// <param name="bookStore"></param>
+        /// <param name="dto"></param>
+        /// <returns>True if successful, false otherwise</returns>
+        public static (bool, string?) CreateNewProjectInCurrentBook(
+            BookStore bookStore, ProjectDTO dto)
+        {
+            ArgumentNullException.ThrowIfNull(bookStore, nameof(bookStore));
+            ArgumentNullException.ThrowIfNull(dto, nameof(dto));
+
+            // Create the new Project from the DTO.
+            Project project = ProjectService.GetNewProject(dto);
+
+            // Attempt to add the project to the current book's
+            // Projects collection.
+            return AddProjectToCurrentBook(bookStore, project);
         }
 
         /// <summary>
@@ -210,6 +258,27 @@ namespace Chrono.Services
             ArgumentNullException.ThrowIfNull(bookStore, nameof(bookStore));
 
             SaveCurrentBookToJson(bookStore);
+        }
+
+
+        public static (bool, string?) ValidateProjectProperties(
+            Book book, Project project)
+        {
+            ArgumentNullException.ThrowIfNull(book, nameof(book));
+            ArgumentNullException.ThrowIfNull(project, nameof(project));
+
+            // Validate that the project's properties are unique in
+            // the book's Projects collection.
+            foreach (Project p in book.Projects)
+            {
+                (bool result, string? detail) = p.ContainsPropertyConflict(project);
+                if (result == true)
+                {
+                    return (false, detail);
+                }
+            }
+
+            return (true, null);
         }
 
         

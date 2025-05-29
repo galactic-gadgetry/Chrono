@@ -1,6 +1,8 @@
 ﻿using Chrono.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -74,6 +76,9 @@ namespace Chrono.Models
         }
 
 
+        public ObservableCollection<Project> Projects { get; set; } = new();
+
+
         public string SaveFilePath { get; init; } = string.Empty;
 
 
@@ -100,6 +105,8 @@ namespace Chrono.Models
                 FileService.SaveFileDirectory,
                 ID.ToString() + ".json");
             Status = BookStatus.Active;
+
+            Projects.CollectionChanged += OnProjectsChanged;
         }
 
 
@@ -108,6 +115,13 @@ namespace Chrono.Models
         {
             PropertyChanged?.Invoke(this,
                 new PropertyChangedEventArgs(propertyName));
+        }
+
+
+
+        private void OnProjectsChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            HasUnsavedChanges = true;
         }
     }
 }

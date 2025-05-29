@@ -43,19 +43,19 @@
 
                 <Label
                     Grid.Column="0"
-                    Content="Test Project"/>
+                    Content="{Binding NameText, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
 
                 <Label
                     Grid.Column="1"
-                    Content="TEST"/>
+                    Content="{Binding CodeText, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
 
                 <Label
                     Grid.Column="2"
-                    Content="12345.67.89.10.11"/>
+                    Content="{Binding WbsText, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
 
                 <Label
                     Grid.Column="3"
-                    Content="Active"/>
+                    Content="{Binding StatusText, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/>
 
                 <StackPanel
                     Grid.Column="4"
@@ -68,11 +68,15 @@
                         </Style>
                     </StackPanel.Resources>
 
-                    <Button>
+                    <Button
+                        Command="{Binding EditButtonClickedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                        CommandParameter="{Binding EditButtonClickedCommandParameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
                         <Image Source="{StaticResource Edit3Black}"/>
                     </Button>
 
-                    <Button>
+                    <Button
+                        Command="{Binding DeleteButtonClickedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"
+                        CommandParameter="{Binding DeleteButtonClickedCommandParameter, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}">
                         <Image Source="{StaticResource TrashBlack}"/>
                     </Button>
                     

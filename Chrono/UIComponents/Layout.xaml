@@ -44,6 +44,9 @@
                             <DataTemplate DataType="{x:Type vm:CreateNewBookViewModel}">
                                 <view:CreateNewBookView/>
                             </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:CreateNewProjectViewModel}">
+                                <view:CreateNewProjectView/>
+                            </DataTemplate>
                             <DataTemplate DataType="{x:Type vm:EditBookDetailsViewModel}">
                                 <view:EditBookDetailsView/>
                             </DataTemplate>

@@ -2,11 +2,23 @@
   "IsBookVoid": false,
   "CreatedDateString": "21 May, 2025",
   "CreatedDateTime": "2025-05-21T15:26:26.9656472-04:00",
-  "DateTimeSaved": "2025-05-21T15:26:26.9659572-04:00",
+  "DateTimeSaved": "2025-05-28T13:07:20.4367275-04:00",
   "HasUnsavedChanges": false,
   "HeaderSaveFilePath": "C:\\Users\\nbspangl\\Documents\\coding\\WPF\\Chrono\\ChronoTests\\data\\c101f8bd-02f4-410e-bb43-1f6c2d4318de_head.json",
   "ID": "c101f8bd-02f4-410e-bb43-1f6c2d4318de",
   "Name": "Test Book",
+  "Projects": [
+    {
+      "Code": "TEST",
+      "CreatedDateTime": "2025-05-28T13:06:45.1063526-04:00",
+      "CreatedDateString": "28 May, 2025",
+      "ID": "52f2552c-498d-415a-aaf0-66ec99ffa7aa",
+      "Name": "Test Project",
+      "Status": 0,
+      "StatusString": "Active",
+      "Wbs": "12345.67.89.10.11"
+    }
+  ],
   "SaveFilePath": "C:\\Users\\nbspangl\\Documents\\coding\\WPF\\Chrono\\ChronoTests\\data\\c101f8bd-02f4-410e-bb43-1f6c2d4318de.json",
   "Status": 0,
   "StatusString": "Active"
